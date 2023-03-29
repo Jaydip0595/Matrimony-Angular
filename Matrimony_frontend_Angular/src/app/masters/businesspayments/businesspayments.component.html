@@ -1,37 +1,56 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Business_payments</h5>
+        <h5 class="card-title">Business Payments</h5>
 
         <!-- Floating Labels Form -->
         <form class="row g-3" [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
             <!-- Businessid -->
+
             <div class="col-md-3">
                 <div class="form-floating">
-                    <input type="text" class="form-control" formControlName="businessid" placeholder="Businessid">
-                    <label for="floatingName">Businessid <span class="text-danger">*</span></label>
+                    <select class="form-select" id="floatingSelect"
+                        formControlName="businessid" aria-label="State">
+                        <option *ngFor="let data of business" value="{{data._id}}">{{data.name}}</option>
+
+                    </select>
+
+                    <label for="floatingSelect">Business Name <span class="text-danger">*</span></label>
                 </div>
                 <em class="error text-danger small"
                     *ngIf="formdata.controls.businessid.touched && formdata.controls.businessid.invalid">Please Enter
-                    businessid</em>
+                    business name</em>
             </div>
 
             <!-- planid -->
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="form-floating">
                     <input type="text" class="form-control" formControlName="planid" placeholder="Planid">
-                    <label for="floatingName">Planid <span class="text-danger">*</span></label>
+                    <label for="floatingName">Plan Name <span class="text-danger">*</span></label>
                 </div>
                 <em class="error text-danger small"
                     *ngIf="formdata.controls.planid.touched && formdata.controls.planid.invalid">Please Enter
-                    planid</em>
+                    plan name</em>
+            </div> -->
+            <div class="col-md-3">
+                <div class="form-floating">
+                    <select class="form-select" id="floatingSelect"
+                        formControlName="planid" aria-label="State">
+                        <option *ngFor="let data of plan" value="{{data._id}}">{{data.name}}</option>
+
+                    </select>
+
+                    <label for="floatingSelect">Plan Name <span class="text-danger">*</span></label>
+                </div>
+                <em class="error text-danger small"
+                    *ngIf="formdata.controls.planid.touched && formdata.controls.planid.invalid">Please Enter
+                    plan name</em>
             </div>
 
 
             <!-- paymentdate -->
             <div class="col-md-3">
                 <div class="form-floating">
-                    <input type="date" class="form-control" formControlName="paymentdate"
-                        placeholder="paymentdate">
+                    <input type="date" class="form-control" formControlName="paymentdate" placeholder="paymentdate">
                     <label for="floatingName">Payment Date <span class="text-danger">*</span></label>
                 </div>
                 <em class="error text-danger small"
@@ -54,11 +73,11 @@
             <div class="col-md-3">
                 <div class="form-floating">
                     <input type="text" class="form-control" formControlName="paymentmethod" placeholder="paymentmethod">
-                    <label for="floatingName">Paymentmethod <span class="text-danger">*</span></label>
+                    <label for="floatingName">Payment Method <span class="text-danger">*</span></label>
                 </div>
                 <em class="error text-danger small"
                     *ngIf="formdata.controls.paymentmethod.touched && formdata.controls.paymentmethod.invalid">Please
-                    Enter paymentmethod</em>
+                    Enter payment method</em>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary" [disabled]="formdata.invalid">Submit</button>
@@ -73,7 +92,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Businesspayments</h5>
+                    <h5 class="card-title">Business Payment</h5>
 
                     <!-- Table with stripped rows -->
                     <div class="table-responsive">
@@ -82,11 +101,11 @@
                                 <tr>
                                     <th style="width: 110px;">Action</th>
                                     <th>Sr.No. </th>
-                                    <th>Businessid</th>
-                                    <th>planid</th>
-                                    <th>paymentdate</th>
-                                    <th>amount</th>
-                                    <th>paymentmethod</th>
+                                    <th>Business Name</th>
+                                    <th>plan Name</th>
+                                    <th>Payment Date</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
 
                                 </tr>
                             </thead>
@@ -99,12 +118,12 @@
                                                 (click)="delete(data._id)"></i></button>
                                     </td>
                                     <td>{{i+1}}</td>
-                                    <td>{{data.businessid}}</td>
-                                    <td>{{data.planid}}</td>
+                                    <td>{{data.businessid.name}} </td>
+                                    <td>{{data.planid.name}} </td>
                                     <td>{{data.paymentdate | date}}</td>
                                     <td>{{data.amount}}</td>
                                     <td>{{data.paymentmethod}}</td>
-                                      
+
                                 </tr>
                             </tbody>
                         </table>
@@ -113,5 +132,5 @@
                 </div>
             </div>
         </div>
-</div>
+    </div>
 </div>

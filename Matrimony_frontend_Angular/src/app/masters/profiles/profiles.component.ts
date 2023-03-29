@@ -56,7 +56,7 @@ export class ProfilesComponent implements OnInit {
     let ctrl = <HTMLSelectElement>(event.target).value;
     // console.log(ctrl);
     let id = ctrl;
-    this.api.get("religions/subreligion/"+ id).subscribe((result:any)=>{
+    this.api.get("religions/subreligions/"+ id).subscribe((result:any)=>{
       // console.log(result);
      
       this.subreligions = result.data; 

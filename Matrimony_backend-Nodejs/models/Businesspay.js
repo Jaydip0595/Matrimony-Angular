@@ -3,9 +3,9 @@ let Schema = mongoose.Schema
 
 let schema = new Schema({
 
-    businessid: {type : String, required : true},
-    planid: {type : String, required : true},
-    paymentdate: {type : String, required : true},
+    businessid: { type : Schema.Types.ObjectId, ref :"businesses"},
+    planid: { type : Schema.Types.ObjectId, ref :"plans"},
+    paymentdate: {type : Date, required : true},
     amount: {type : String, required : true},
     paymentmethod: {type : String, required : true},
 

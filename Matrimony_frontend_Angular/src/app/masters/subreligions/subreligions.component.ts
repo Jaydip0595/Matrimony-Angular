@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/shared/api.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class SubreligionsComponent implements OnInit {
   result: any;
 
 
-  constructor(private api: ApiService, private route: ActivatedRoute) {
+  constructor(private api: ApiService, private route: ActivatedRoute , private router:Router) {
     this.religionid = this.route.snapshot.paramMap.get("religionid");
     this.api.get("religions/" + this.religionid).subscribe((result: any) => {
       this.religion = result.data;
@@ -80,6 +80,10 @@ export class SubreligionsComponent implements OnInit {
     });
   };
 
+
+  back() {
+    this.router.navigate(['./masters/religions']);
+  }
 
 }
 

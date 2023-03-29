@@ -12,6 +12,8 @@ export class BusinesspaymentsComponent {
   formdata: any;
   datas: any = "";
   id = "";
+  business:any;
+  plan:any;
  
 
   constructor(public api: ApiService) { }
@@ -21,11 +23,29 @@ export class BusinesspaymentsComponent {
   }
 
   load() {
-    this.id = ""
+    this.id = "";
     this.api.get("businesspay").subscribe((result: any) => {
+     
+      
       // console.log(result);
       this.datas = result.data;
+    });
+
+    this.api.get("businesses").subscribe((result: any) => {
+      // console.log(result);
+      this.business = result.data;
+      this.plan = result.data;
     })
+
+
+    this.api.get("plans").subscribe((result: any) => {
+      // console.log(result);
+      this.plan = result.data;
+    });
+  
+    
+
+
 
     this.formdata = new FormGroup({
       businessid: new FormControl("", Validators.compose([Validators.required])),
@@ -36,6 +56,14 @@ export class BusinesspaymentsComponent {
       
        })
   }
+
+
+
+  
+  
+
+
+
 
 edit(id:any){
     // console.log(id);

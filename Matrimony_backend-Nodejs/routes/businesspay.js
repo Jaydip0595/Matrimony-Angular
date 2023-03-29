@@ -32,8 +32,9 @@ router.put("/:id", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-    Businesspay.find().then(result => {
-        res.end(JSON.stringify({ status: "success", data: result }))
+    Businesspay.find().populate({path: "businessid"}).populate({path: "planid"}).sort({name:1}).then(result => {
+        res.end(JSON.stringify({status : "success", data : result}));
+ 
     }).catch(err => {
         res.end(JSON.stringify({ status: "failed", data: err }))
     })
@@ -50,6 +51,8 @@ router.get("/:id", (req, res) => {
             res.end(JSON.stringify({status:"failed",data:"Record Not Found"}));
         })
 });
+
+
 
 router.delete("/:id", (req, res) => {
    let id = req.params.id;
